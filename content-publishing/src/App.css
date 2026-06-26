@@ -1,0 +1,357 @@
+:root {
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success: #10b981;
+  --success-hover: #059669;
+  --danger: #ef4444;
+  --draft: #f59e0b;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* Layout tightened for better proportion */
+.dashboard-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  animation: fadeSlideUp 0.4s ease-out forwards;
+}
+
+/* Header left-aligned to match the grid */
+.dashboard-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+  color: #000;
+}
+
+.dashboard-header h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: black;
+}
+
+
+.dashboard-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  color: black;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.card {
+  background: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-section h2, .content-list h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Strict left alignment for form labels */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  text-align: left; 
+}
+
+input[type="text"],
+input[type="url"],
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.875rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: var(--bg-color);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  color: #000;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  background-color: var(--surface-color);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  color: black;
+}
+
+.type-toggle {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--bg-color);
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.type-toggle button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+  color: black;
+}
+
+.type-toggle button:hover {
+  color: var(--text-main);
+}
+
+.type-toggle button.active {
+  background: var(--surface-color);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
+
+/* Fixed button wrapping and layout */
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  flex: 1;
+  transition: background-color var(--transition-fast);
+  white-space: nowrap; 
+  text-align: center;
+  color: black;
+}
+
+.btn-draft {
+  background: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-draft:hover {
+  background: #cbd5e1;
+}
+
+.btn-publish {
+  background: var(--primary);
+  color: black;
+}
+
+.btn-publish:hover {
+  background: var(--primary-hover);
+}
+
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.content-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  animation: fadeSlideUp 0.3s ease-out forwards;
+}
+
+.content-card.draft {
+  border-left: 4px solid var(--draft);
+}
+
+.content-card.published {
+  border-left: 4px solid var(--success);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.badge.draft {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge.published {
+  background: #d1fae5;
+  color: var(--success-hover);
+}
+
+.date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.content-card h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.note-text {
+  white-space: pre-wrap;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.video-preview {
+  width: 100%;
+  height: 250px;
+  border-radius: 6px;
+  background-color: #000;
+}
+
+.card-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.btn-publish-small {
+  background: var(--success);
+  color: black;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.btn-publish-small:hover {
+  background: var(--success-hover);
+}
+
+.btn-delete {
+  background: transparent;
+  color: var(--danger);
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--danger);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.btn-delete:hover {
+  background: var(--danger);
+  color: black;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem 1.5rem;
+  background: transparent;
+  border-radius: 10px;
+  border: 1px dashed #cbd5e1;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-container {
+    padding: 1.5rem 1rem;
+  }
+}
+/* this is a bug  */
+h1{
+  color: black;
+}
+p{
+  color: black;
+}
+h2{
+  color: black;
+}
